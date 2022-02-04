@@ -47,18 +47,11 @@ def check(ans, pos, newBrd):
 
 def solve(brd):
   #look for zeros
-  pos = []
-  for i in range(len(brd)):
-    for j in range(len(brd[0])):
-      if brd[i][j] == 0:
-        pos = [i, j]
-   #--------------------------
+  pos = findZeros(brd)
 
-  #End case
   if not pos: #if board has no 0 (board is done)
     return True 
 
-  #Base case
   for i in range(1, 10):
     if check(i, pos, brd):
       brd[pos[0]][pos[1]] = i
@@ -68,6 +61,17 @@ def solve(brd):
         brd[pos[0]][pos[1]] = 0
   return False
 #Solve funtion end
+
+def findZeros(brd):
+    pos = []
+    for i in range(len(brd)):
+        for j in range(len(brd[0])):
+            if brd[i][j] == 0:
+                pos = [i, j]
+                return pos
+    return None
+
+#zeros function end
 
 print("Before *")
 printBrd(board)
