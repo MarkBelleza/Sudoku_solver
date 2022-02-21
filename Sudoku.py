@@ -19,63 +19,49 @@ def printBrd(brd):
         print("| ", end = '')
       print(str(board[i][j]) + " ", end='')
     print('')
-#printBrd fucntion ends here
+#printBrd fucntion end---*
 
-def check(ans, pos, newBrd):
-#pos = [row, col]
-  
+def check(ans, x, y, newBrd):
+# x = row number
+# y = column number
   #Check condition for row
   for i in range(len(newBrd[0])):
-    if newBrd[pos[0]][i] == ans and pos[1] != i:
+    if newBrd[x][i] == ans and y != i:
       return False
   
   #Check condition for column
   for j in range(len(newBrd)):
-    if newBrd[j][pos[1]] == ans and pos[0] != j:
+    if newBrd[j][y] == ans and x != j:
       return False
 
   #Check condition for each sub squares
-  sqrRow = pos[0] // 3
-  sqrCol = pos[1] // 3
+  sqrRow = x // 3
+  sqrCol = y // 3
   for i in range(sqrRow * 3, (sqrRow * 3) + 3):
     for j in range(sqrCol * 3, (sqrCol * 3) + 3):
-      if newBrd[i][j] == ans and i != pos[0] and j != pos[1]:
+      if newBrd[i][j] == ans and i != x and j != y:
         return False
-
   return True
-#check function ends here
+#check function end---*
 
 def solve(brd):
-  #look for zeros
-  pos = findZeros(brd)
+  for i in range(len(brd)):
+    for j in range(len(brd[0])):
+      if brd[i][j] == 0:
+        for s in range(1, 10): #iterate through possible numbers
+          if check(s, i, j, brd):
+            brd[i][j] = s
+            if solve(brd): #checks the next
+              return True
+            else: brd[i][j] = 0 #goes back to for loop and finds another possible number
+        return False #if no possible possible number found, backtrack!
+  else: return True #if board has no 0 (board is done)
+#solve funtion end---*
 
-  if not pos: #if board has no 0 (board is done)
-    return True 
 
-  for i in range(1, 10):
-    if check(i, pos, brd):
-      brd[pos[0]][pos[1]] = i
-      if solve(brd):
-        return True
-      else:
-        brd[pos[0]][pos[1]] = 0
-  return False
-#Solve funtion end
-
-def findZeros(brd):
-    pos = []
-    for i in range(len(brd)):
-        for j in range(len(brd[0])):
-            if brd[i][j] == 0:
-                pos = [i, j]
-                return pos
-    return None
-
-#zeros function end
-
-print("Before *")
+print("Before")
 printBrd(board)
-print("-- -- -- -- -- -- -- -- -- -- -- --")
-print("After *")
+print("-- -- -- -- -- -- -- --")
+print("After")
 solve(board)
 printBrd(board)
