@@ -61,7 +61,7 @@ def solve(brd):
 
 print("Before")
 printBrd(board)
-print("-- -- -- -- -- -- -- --")
+print("-- -- -- -- --  -- -- --")
 print("After")
 solve(board)
 printBrd(board)
