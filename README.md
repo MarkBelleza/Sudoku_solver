@@ -11,3 +11,6 @@ When the GUI is running, press BACKSPACE and the GUI will solve the board in rea
 
 
 ![sudoku_solved](https://user-images.githubusercontent.com/98550319/155480254-e1bf081b-7024-42b4-8158-bc6a3bb9356c.png)
+
+https://user-images.githubusercontent.com/98550319/155727515-72cb48d0-02ef-49fc-b0ad-a3983441ea57.mp4
+
