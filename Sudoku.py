@@ -55,7 +55,7 @@ def solve(brd):
               return True
             else: brd[i][j] = 0 #goes back to for loop and finds another possible number
         return False #if no possible possible number found, backtrack!
-  else: return True #if board has no 0 (board is done)
+  return True #if board has no 0 (board is done)
 #solve funtion end---*
 
 

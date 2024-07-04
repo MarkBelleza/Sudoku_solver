@@ -43,7 +43,7 @@ def solve(brd):
               brd[i][j] = 0
               update_board() 
         return False #if no possible possible number found, backtrack!
-  else: return True #if board has no 0 (board is done)
+  return True #if board has no 0 (board is done)
 #solve funtion end---*
 
 def board_numbers(): #display the board numbers into screen
